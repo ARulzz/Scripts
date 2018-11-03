@@ -1,0 +1,48 @@
+# Author: Aarya R Shankar
+# This script is written only for personal purpose. Please refer it's man page for details on how to use the command cpd.
+
+
+#!/bin/bash
+# Problems:
+# Source or destination not given - Solved
+# Creating a man page - Solved
+# Access to the man page to users - Solved
+# Giving help option - Solved
+# Source file doesn't exist - Solved
+# Display of cp errors - Solved
+# Copying destination into destination - Solved
+# Arguments being more than 10
+# File existing in destination directory
+# Option to display progress
+# Option to copy a file to file
+# Option to concatenate several files to one file
+if [ $# -eq 0 ];
+then
+  echo "cpd: filename not specified"
+  echo "cpd: destination directory not specified"
+  echo "Try 'cpd --help' for more information."
+elif [ "$1" == "--help" ];
+then
+	man cpd | tail -n +3 | head -n -2
+elif [ $# -eq 1 ];
+then
+  echo "cpd: destination directory not specified"
+else
+  eval dir=\$$#
+  echo "directory given: $dir"
+  slash="/"
+  for file in "${@:1:$(($#-1))}";
+  do
+    if [ ! -e "$file" ];
+    then
+      echo "cpd: no such file exists"
+      echo "Try 'cpd --help' for more information."
+    elif [ "$file" != "$dir" ] && [ "$file$slash" != "$dir" ] && [ "$file" != "$dir$slash" ];
+    # elif [[ "$file" != "$dir" ]];
+    then
+      mkdir -p "$dir"
+      cp -r $file "$dir" 2>/dev/null
+      echo "cpr: copied $file to $dir"
+    fi
+  done
+fi
