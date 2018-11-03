@@ -1,0 +1,4 @@
+#!/bin/sh
+
+MUSIC_PATH="/home/aarya/Music"
+vlc --random $MUSIC_PATH > /dev/null 2>&1 &
