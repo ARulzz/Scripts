@@ -1,0 +1,9 @@
+#!/bin/bash
+echo "Updating..."
+sudo apt-get -y update
+echo "Upgrading..."
+sudo apt-get -y upgrade
+echo "Performing autoremove..."
+sudo apt-get -y autoremove
+echo "Performing autoclean..."
+sudo apt-get -y autoclean
