@@ -1,0 +1,135 @@
+# Author: Aarya R Shankar
+# Please refer the man page to know how to use it.
+
+#!/bin/bash
+if [ $# -eq 0 ];
+then
+	echo "new: filename not specified"
+	echo "Try 'new --help' for more information."
+elif [ $1 == --help ];
+then
+        man new | tail -n +3 | head -n -2
+elif [ $1 == --py ] || [ $1 == --python ];
+then
+	file=$2
+	if ! [[ $file == *.py ]];
+	then
+		file=$file.py
+	fi
+	if [ -e "$file" ];
+	then
+		echo "new: Sorry file already exists. Try another name."
+	else
+		cp ~/Documents/Programming/Python/new_template.py "$file"
+		echo "new: New python file $file created"
+	fi
+elif [ $1 == --java ];
+then
+	file=$2
+	if ! [[ $file == *.java ]];
+	then
+		file=$file.java
+	fi
+	if [ -e "$file" ];
+	then
+		echo "new: Sorry file already exists. Try another name."
+	else
+		cp ~/Documents/Programming/Java/new_template.java "$file"
+		echo "new: New java file $file created"
+	fi
+elif [ $1 == --c ];
+then
+	file=$2
+	if ! [[ $file == *.c ]];
+	then
+		file=$file.c
+	fi
+	if [ -e "$file" ];
+	then
+		echo "new: Sorry file already exists. Try another name."
+	else
+		cp ~/Documents/Programming/C/new_template.c "$file"
+		echo "new: New c file $file created"
+	fi
+elif [ $# -eq 2 ];
+then
+	echo "new: invalid option"
+	echo "Try 'new --help' for more information."
+else
+	path=$(pwd)
+	file=$1
+	if [[ $path == *Programming* ]];
+	then	
+		if [[ $path == *Python* ]];
+		then
+			if ! [[ $file == *.py ]];
+			then
+				file=$file.py
+			fi
+			if [ -e "$file" ];
+			then
+				echo "new: Sorry file already exists. Try another name."
+			else
+				cp new_template.py "$file"
+				echo "new: New python file $file created"
+			fi
+		elif [[ $path == *Java* ]];
+		then
+			if ! [[ $file == *.java ]];
+			then
+				file=$file.java
+			fi
+			if [ -e "$file" ];
+			then
+				echo "new: Sorry file already exists. Try another name."
+			else
+				cp new_template.java $file
+				echo "new: New java file $file created"
+			fi
+		elif [[ $path == *C ]];
+		then
+			if ! [[ $file == *.c ]];
+			then
+				file=$file.c
+			fi
+			if [ -e "$file" ];
+			then
+				echo "new: Sorry file already exists. Try another name."
+			else
+				cp new_template.c $file
+				echo "new: New c file $file created"
+			fi
+		fi
+	elif [[ ${file:(-3)} == .py ]];
+	then
+		if [ -e "$file" ];
+		then
+			echo "new: Sorry file already exists. Try another name."
+		else
+			cp ~/Documents/Programming/Python/new_template.py "$file"
+			echo "new: New python file $file created"
+		fi
+	elif [[ ${file:(-5)} == .java ]];
+	then
+		if [ -e "$file" ];
+		then
+			echo "new: Sorry file already exists. Try another name."
+		else
+			cp ~/Documents/Programming/Java/new_template.java "$file"
+			echo "new: New java file $file created"
+		fi
+	elif [[ ${file:(-2)} == .c ]];
+	then
+		if [ -e "$file" ];
+		then
+			echo "new: Sorry file already exists. Try another name."
+		else
+			cp ~/Documents/Programming/C/new_template.c "$file"
+			echo "new: New c file $file created"
+		fi
+
+	else
+		echo "new: language of the new file is not specified"
+		echo "Try 'new --help' for more information."
+	fi
+fi
