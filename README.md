@@ -13,9 +13,9 @@ Scripts
   * Say, you want to add the command `cmd` to your PC, then move into it's folder
     
     `cd cmd`
-  * Copy the bash script file to `/usr/bin/` folder
+  * Copy the bash script file to `/usr/local/bin/` folder
     
-    `sudo cp cmd /usr/bin/`
+    `sudo cp cmd /usr/local/bin/`
   * To avail it's man file, move it to `man1` folder
     
     `sudo cp cmd.1.gz /usr/local/share/man/man1/`
